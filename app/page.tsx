@@ -5,8 +5,8 @@ import { useEffect } from 'react'
 import { LogoHelmet } from '@/app/_components/LogoHelmet'
 import Link from 'next/link'
 import Image from 'next/image'
-import Venue1 from './venue-1.jpg'
-import Venue2 from './venue-2.jpg'
+import Venue1 from './venue_1.jpg'
+import Venue2 from './venue_2.jpg'
 
 const locationLink = 'https://surl.amap.com/fo5h75l189Rm'
 
