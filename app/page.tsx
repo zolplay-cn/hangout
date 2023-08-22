@@ -129,7 +129,7 @@ export default function Home() {
                 </dt>
                 <dd className="mt-1 pl-9 text-zinc-100 sm:mt-0 sm:w-3/5 sm:flex-none sm:pl-0">
                   <time dateTime="2023-09-02T14:00+08:00">
-                    北京时间 2023年9月2日
+                    北京时间 2023年9月2日 星期六
                     <br />
                     2:00 PM - 5:00 PM
                   </time>
