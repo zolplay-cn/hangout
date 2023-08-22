@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: '2023佐玩首届开发者交流会',
   description:
     '在深圳与优秀的开发者们面对面交流，我们有咖啡有点心，还有满满的技术八卦等你来听。赶紧加入我们的大家庭，认识一下社区里的各路英雄好汉！',
+  metadataBase: new URL('https://hangout.zolplay.com'),
 }
 
 export default function RootLayout({
