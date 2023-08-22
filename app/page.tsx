@@ -4,6 +4,9 @@ import { gradient } from './Gradient.js'
 import { useEffect } from 'react'
 import { LogoHelmet } from '@/app/_components/LogoHelmet'
 import Link from 'next/link'
+import Image from 'next/image'
+import Venue1 from './venue-1.jpg'
+import Venue2 from './venue-2.jpg'
 
 const locationLink = 'https://surl.amap.com/fo5h75l189Rm'
 
@@ -225,8 +228,26 @@ export default function Home() {
               </li>
             </ul>
           </section>
+
+          <section className="mt-10 border-t border-dashed border-white/30 pt-10">
+            <h2 className="text-2xs/6 font-semibold uppercase text-sky-200">
+              场地照片
+            </h2>
+            <div className="mt-6 flex w-full gap-6 md:gap-3 md:flex-row flex-col">
+              {[Venue1, Venue2].map((image, idx) => (
+                <Image
+                  key={idx}
+                  src={image}
+                  alt=""
+                  className="w-full md:w-64 h-auto rounded-xl shadow-2xl"
+                  priority
+                />
+              ))}
+            </div>
+          </section>
+
           <section className="mt-10 border-t border-dashed border-white/30 pt-10 pb-24 lg:pb-8">
-            <h2 className="text-2xs/6 font-semibold uppercase text-sky-300">
+            <h2 className="text-2xs/6 font-semibold uppercase text-sky-200">
               FAQs
             </h2>
             <ul role="list" className="mt-6 space-y-6">
