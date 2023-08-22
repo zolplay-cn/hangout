@@ -108,6 +108,8 @@ export default function Home() {
                   >
                     CM 书咖（深圳湾店）3F
                   </a>
+                  <br />
+                  <span className="text-zinc-100/80">2/8号线湾厦 A 出口</span>
                 </dd>
               </div>
               <div className="border-b border-dashed border-white/30 py-4 sm:flex">
@@ -131,7 +133,7 @@ export default function Home() {
                   <time dateTime="2023-09-02T14:00+08:00">
                     北京时间 2023年9月2日 星期六
                     <br />
-                    2:00 PM - 5:00 PM
+                    <span className="text-zinc-100/80">2:00 PM - 5:00 PM</span>
                   </time>
                 </dd>
               </div>
@@ -153,11 +155,9 @@ export default function Home() {
                   门票
                 </dt>
                 <dd className="mt-1 pl-9 text-zinc-100 sm:mt-0 sm:w-3/5 sm:flex-none sm:pl-0">
-                  ¥60/人
+                  ¥60/人（场地最多容纳70人）
                   <br />
-                  场地最多容纳70人
-                  <br />
-                  咖啡和点心免费供应
+                  <span className="text-zinc-100/80">咖啡和点心免费供应</span>
                 </dd>
               </div>
             </dl>
