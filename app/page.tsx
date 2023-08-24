@@ -204,8 +204,8 @@ export default function Home() {
                   自由交流
                 </h3>
                 <p className="order-first text-2xs/6 font-semibold text-sky-200">
-                  <time dateTime="2023-06-20T14:30+08:00">2:30 PM</time>-{' '}
-                  <time dateTime="2023-06-20T16:45+08:00">4:45 PM</time>
+                  <time dateTime="2023-09-02T14:30+08:00">2:30 PM</time>-{' '}
+                  <time dateTime="2023-09-02T16:45+08:00">4:45 PM</time>
                 </p>
                 <p className="mt-0.5 text-sm/6 text-zinc-200/80">
                   花点时间，边吃着手工小点心、边喝点上等的自制咖啡，与社区的大佬们拉拉近乎，搞搞关系！今天，就是来交朋友的~
@@ -218,8 +218,8 @@ export default function Home() {
                   大抽奖
                 </h3>
                 <p className="order-first text-2xs/6 font-semibold text-sky-200">
-                  <time dateTime="2023-06-20T16:45+08:00">4:45 PM</time>-{' '}
-                  <time dateTime="2023-06-20T17:00+08:00">5:00 PM</time>
+                  <time dateTime="2023-09-02T16:45+08:00">4:45 PM</time>-{' '}
+                  <time dateTime="2023-09-02T17:00+08:00">5:00 PM</time>
                 </p>
                 <p className="mt-0.5 text-sm/6 text-zinc-200/80">
                   我们精心准备了 PICO 4 Pro、Apple TV 4K 与 HomePod
