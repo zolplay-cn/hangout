@@ -246,7 +246,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="mt-10 border-t border-dashed border-white/30 pt-10 pb-24 lg:pb-8">
+          <section className="mt-10 border-t border-dashed border-white/30 pt-10 pb-32 lg:pb-8">
             <h2 className="text-2xs/6 font-semibold uppercase text-sky-200">
               FAQs
             </h2>
