@@ -3,8 +3,24 @@
 import React from 'react'
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
+import { animate, motion, useMotionValue, useTransform } from 'framer-motion'
 
 export const runtime = 'edge'
+
+const ANIMATION_DURATION = 3
+const ANIMATION_RATE = 8
+const ANIMATION_COUNT_MAX = ANIMATION_DURATION * ANIMATION_RATE
+
+const getRandomCodePool = () => {
+  const getRandomChar = () => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+    return characters.charAt(Math.floor(Math.random() * characters.length))
+  }
+  const getRandomCode = () => {
+    return getRandomChar() + getRandomChar() + getRandomChar()
+  }
+  return new Array(ANIMATION_COUNT_MAX + 1).fill(null).map(getRandomCode)
+}
 
 type Winner = {
   code: string
@@ -14,20 +30,41 @@ export default function GiveawayPage() {
   const [pickedCodes, setPickedCodes] = React.useState<string[]>([])
   const [winner, setWinner] = React.useState<Winner | null>(null)
   const [showConfetti, setShowConfetti] = React.useState(false)
+  const [isButtonDisabled, setIsButtonDisabled] = React.useState(false)
+
+  const [randomCodePool, setRandomCodePool] = React.useState(
+    getRandomCodePool()
+  )
+  const animationCount = useMotionValue(0)
+  const animationCode = useTransform(animationCount, (count) =>
+    count === 0 ? '???' : randomCodePool[Math.round(count)]
+  )
+
   const pickWinner = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setIsButtonDisabled(true)
+    animationCount.set(0)
+    setRandomCodePool(getRandomCodePool())
+
     const response = await fetch('/api/giveaway', {
       method: 'POST',
       body: JSON.stringify({ pickedCodes }),
     })
     const { winner } = await response.json()
+
+    await animate(animationCount, ANIMATION_COUNT_MAX, {
+      duration: ANIMATION_DURATION,
+    })
+
     setPickedCodes((prev) => [...prev, winner.code])
     setWinner(winner)
     setShowConfetti(true)
     setTimeout(() => {
       setShowConfetti(false)
+      setIsButtonDisabled(false)
     }, 4000)
   }
+
   const { width, height } = useWindowSize()
   const [isMounted, setIsMounted] = React.useState(false)
   React.useEffect(() => {
@@ -48,16 +85,16 @@ export default function GiveawayPage() {
 
       <h1 className="text-4xl font-black">🎟️ 抽奖 🎟️</h1>
 
-      {winner && (
-        <section>
-          <h2 className="text-8xl text-sky-200/90 tracking-tight font-mono font-black text-center">
-            {winner.code}
-          </h2>
-          <p className="text-lg text-zinc-100/80 tracking-tight font-semibold text-center">
-            {winner.name}
-          </p>
-        </section>
-      )}
+      <section>
+        <motion.h2 className="text-8xl text-sky-200/90 tracking-tight font-mono font-black text-center">
+          {animationCount.get() === ANIMATION_COUNT_MAX
+            ? winner?.code
+            : animationCode}
+        </motion.h2>
+        <p className="text-lg text-zinc-100/80 tracking-tight font-semibold text-center">
+          {animationCount.get() === ANIMATION_COUNT_MAX ? winner?.name : '???'}
+        </p>
+      </section>
 
       <form onSubmit={pickWinner}>
         <button
@@ -65,6 +102,7 @@ export default function GiveawayPage() {
           aria-label="抽取幸运儿"
           rel="noopener noreferrer"
           type="submit"
+          disabled={isButtonDisabled}
         >
           <span className="opacity-0">抽取幸运儿</span>
         </button>
