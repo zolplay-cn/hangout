@@ -89,7 +89,7 @@ export default function PageCheckIn() {
                   )}
                 </section>
                 <button
-                  className="mt-auto bg-green-400/80 rounded-lg text-white py-2"
+                  className="mt-auto bg-[#AF91EB]/80 rounded-lg text-white py-2"
                   onClick={() => {
                     setDialogData(null)
                     scannerReadyRef.current = true
