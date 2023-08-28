@@ -67,7 +67,7 @@ export default function PageCheckIn() {
 
   return (
     <div className="flex flex-col h-full grow">
-      <video ref={containerRef} id="scanner" />
+      <video ref={containerRef} id="scanner" className="fixed inset-0 h-full" />
       {dialogData && (
         <Dialog.Root open>
           <Dialog.Portal>
