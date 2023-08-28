@@ -9,19 +9,20 @@ export const POST = async (req: NextRequest) => {
   const users = await db
     .update(guests)
     .set({ checkedIn: true })
-    .where(and(eq(guests.code, code)))
+    .where(eq(guests.code, code))
     .returning({ name: guests.name })
 
   if (!users.length) {
     return NextResponse.json(
-      { message: `code ${code} does not exist` },
-      { status: 404 }
+      { message: `Code [${code}] does not exist.` },
+      { status: 404 },
     )
   }
+
   const checkedInUsers = await db
     .select()
     .from(guests)
-    .where(and(eq(guests.checkedIn, true)))
+    .where(eq(guests.checkedIn, true))
 
   return NextResponse.json({
     user: users[0].name,
