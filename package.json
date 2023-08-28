@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev | npx local-ssl-proxy --source 3001 --target 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -11,6 +11,7 @@
     "db:push": "drizzle-kit push:pg"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.4",
     "@types/node": "20.5.1",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
@@ -24,6 +25,7 @@
     "framer-motion": "^10.16.1",
     "next": "13.4.19",
     "postcss": "8.4.28",
+    "qr-scanner": "^1.4.2",
     "react": "18.2.0",
     "react-confetti": "^6.1.0",
     "react-dom": "18.2.0",
