@@ -9,7 +9,7 @@ type CheckInResponse = {
   order?: number
 }
 
-export default function PageCheckIn() {
+export default function CheckInPage() {
   const scannerReadyRef = useRef(true)
   const [dialogData, setDialogData] = useState<CheckInResponse | null>(null)
 
@@ -40,18 +40,22 @@ export default function PageCheckIn() {
         console.error(error)
       }
     },
-    [doCheckIn]
+    [doCheckIn],
   )
 
   const { ref } = useZxing({
     onDecodeResult(result) {
-      onScanned(result.getText())
+      void onScanned(result.getText())
     },
   })
 
   return (
     <div className="flex flex-col h-full grow">
-      <video ref={ref} id="scanner" />
+      <video
+        ref={ref}
+        id="scanner"
+        className="rounded-xl border-2 border-zinc-50/30"
+      />
       {dialogData && (
         <Dialog.Root open>
           <Dialog.Portal>
@@ -61,7 +65,9 @@ export default function PageCheckIn() {
                   {dialogData.name && dialogData.order ? (
                     <>
                       <p className="text-xs">第 {dialogData.order} 位</p>
-                      <p className="font-[900] text-8xl ">{dialogData.name}</p>
+                      <p className="font-bold text-6xl truncate tracking-tighter">
+                        {dialogData.name}
+                      </p>
                       <p className="font-semibold text-zinc-500 mt-4 text-sm">
                         {dialogData.code}
                       </p>
@@ -89,7 +95,7 @@ export default function PageCheckIn() {
                   )}
                 </section>
                 <button
-                  className="mt-auto bg-[#AF91EB]/80 rounded-lg text-white py-2"
+                  className="mt-auto bg-indigo-600 rounded-lg text-white py-2"
                   onClick={() => {
                     setDialogData(null)
                     scannerReadyRef.current = true
