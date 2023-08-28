@@ -7,7 +7,7 @@ import { animate, motion, useMotionValue, useTransform } from 'framer-motion'
 
 export const runtime = 'edge'
 
-const ANIMATION_DURATION = 3
+const ANIMATION_DURATION = 5
 const ANIMATION_RATE = 8
 const ANIMATION_COUNT_MAX = ANIMATION_DURATION * ANIMATION_RATE
 
