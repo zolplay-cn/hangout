@@ -133,8 +133,8 @@ export default function Event() {
                   时间
                 </dt>
                 <dd className="mt-1 pl-9 text-zinc-100 sm:mt-0 sm:w-3/5 sm:flex-none sm:pl-0">
-                  <time dateTime="2023-09-02T14:00+08:00">
-                    北京时间 2023年9月2日 星期六
+                  <time dateTime="2023-09-03T14:00+08:00">
+                    北京时间 2023年9月3日 星期日
                     <br />
                     <span className="text-zinc-100/80">2:00 PM - 5:00 PM</span>
                   </time>
@@ -175,8 +175,8 @@ export default function Event() {
                   入场
                 </h3>
                 <p className="order-first text-2xs/6 font-semibold text-sky-200">
-                  <time dateTime="2023-09-02T13:30+08:00">1:30 PM</time>-{' '}
-                  <time dateTime="2023-09-02T14:30+08:00">2:00 PM</time>
+                  <time dateTime="2023-09-03T13:30+08:00">1:30 PM</time>-{' '}
+                  <time dateTime="2023-09-03T14:30+08:00">2:00 PM</time>
                 </p>
                 <p className="mt-0.5 text-sm/6 text-zinc-200/80">
                   早点儿来，领取我们精心准备的周边，喝口咖啡，吃个小蛋糕，你负责享受，我们负责买单，跟其他提前到的朋友们先聊聊天。
@@ -189,8 +189,8 @@ export default function Event() {
                   佐玩 Keynote
                 </h3>
                 <p className="order-first text-2xs/6 font-semibold text-sky-200">
-                  <time dateTime="2023-09-02T14:00+08:00">2:00 PM</time>-{' '}
-                  <time dateTime="2023-09-02T14:30+08:00">2:30 PM</time>
+                  <time dateTime="2023-09-03T14:00+08:00">2:00 PM</time>-{' '}
+                  <time dateTime="2023-09-03T14:30+08:00">2:30 PM</time>
                 </p>
                 <p className="mt-0.5 text-sm/6 text-zinc-200/80">
                   佐玩创始人 CEO —— Cali Castle
@@ -204,8 +204,8 @@ export default function Event() {
                   自由交流
                 </h3>
                 <p className="order-first text-2xs/6 font-semibold text-sky-200">
-                  <time dateTime="2023-09-02T14:30+08:00">2:30 PM</time>-{' '}
-                  <time dateTime="2023-09-02T16:45+08:00">4:45 PM</time>
+                  <time dateTime="2023-09-03T14:30+08:00">2:30 PM</time>-{' '}
+                  <time dateTime="2023-09-03T16:45+08:00">4:45 PM</time>
                 </p>
                 <p className="mt-0.5 text-sm/6 text-zinc-200/80">
                   花点时间，边吃着手工小点心、边喝点上等的自制咖啡，与社区的大佬们拉拉近乎，搞搞关系！今天，就是来交朋友的~
@@ -218,12 +218,12 @@ export default function Event() {
                   大抽奖
                 </h3>
                 <p className="order-first text-2xs/6 font-semibold text-sky-200">
-                  <time dateTime="2023-09-02T16:45+08:00">4:45 PM</time>-{' '}
-                  <time dateTime="2023-09-02T17:00+08:00">5:00 PM</time>
+                  <time dateTime="2023-09-03T16:45+08:00">4:45 PM</time>-{' '}
+                  <time dateTime="2023-09-03T17:00+08:00">5:00 PM</time>
                 </p>
                 <p className="mt-0.5 text-sm/6 text-zinc-200/80">
-                  我们精心准备了 PICO 4 Pro、Apple TV 4K 与 HomePod
-                  mini，赶紧化身幸运儿，祝大家好运气！（抽奖活动仅限现场通过门票编号参与）
+                  我们精心准备了 Apple TV 4K、HomePod
+                  mini 与 Nothing Ear (2) 赶紧化身幸运儿，祝大家好运气！（抽奖活动仅限现场通过门票编号参与）
                 </p>
               </li>
             </ul>
