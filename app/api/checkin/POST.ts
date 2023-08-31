@@ -3,17 +3,17 @@ import { guests } from '@/db/schema'
 
 import { and, eq } from 'drizzle-orm'
 import { NextRequest, NextResponse } from 'next/server'
-import { hasPassedPredefinedDateTime } from '@/app/api/guard'
+import { getEvent } from '@/app/events'
 
 export const POST = async (req: NextRequest) => {
-  if (!hasPassedPredefinedDateTime('2023-09-02 12:00')) {
+  const { code, event } = await req.json()
+  if (!getEvent(event)?.allowCheckIn) {
     return NextResponse.json(
       { message: 'Check-in is not open yet.' },
       { status: 403 }
     )
   }
 
-  const { code, event } = await req.json()
   const users = await db
     .update(guests)
     .set({ checkedIn: true })
