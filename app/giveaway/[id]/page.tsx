@@ -1,9 +1,11 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion'
+import { getEvent } from '@/app/events'
+import { redirect } from 'next/navigation'
 
 export const runtime = 'edge'
 
@@ -26,7 +28,7 @@ type Winner = {
   code: string
   name: string
 }
-export default function GiveawayPage() {
+export default function GiveawayPage({ params }: { params: { id: string } }) {
   const [pickedCodes, setPickedCodes] = React.useState<string[]>([])
   const [winner, setWinner] = React.useState<Winner | null>(null)
   const [showConfetti, setShowConfetti] = React.useState(false)
@@ -39,6 +41,12 @@ export default function GiveawayPage() {
   const animationCode = useTransform(animationCount, (count) =>
     count === 0 ? '???' : randomCodePool[Math.round(count)]
   )
+
+  useEffect(() => {
+    if (!params || !params.id) return redirect('/')
+
+    if (!getEvent(params.id)?.allowGiveaway) return redirect('/')
+  }, [params])
 
   const pickWinner = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()

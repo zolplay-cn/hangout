@@ -8,11 +8,11 @@ export async function POST(req: NextRequest) {
   if (!hasPassedPredefinedDateTime('2023-09-02 14:00')) {
     return NextResponse.json(
       { message: 'Giveaway is not live yet.' },
-      { status: 403 },
+      { status: 403 }
     )
   }
 
-  const { pickedCodes } = await req.json()
+  const { pickedCodes, event } = await req.json()
   const winnableGuests = await db
     .select()
     .from(guests)
@@ -22,8 +22,13 @@ export async function POST(req: NextRequest) {
             notInArray(guests.code, pickedCodes),
             eq(guests.inGiveawayPool, true),
             eq(guests.checkedIn, true),
+            eq(guests.event, event)
           )
-        : and(eq(guests.inGiveawayPool, true), eq(guests.checkedIn, true)),
+        : and(
+            eq(guests.inGiveawayPool, true),
+            eq(guests.checkedIn, true),
+            eq(guests.event, event)
+          )
     )
 
   const winner =
