@@ -8,8 +8,9 @@ import { DateTime } from 'luxon'
  */
 export function hasPassedPredefinedDateTime(
   predefinedDateTime: string,
-  timezone: string = 'Asia/Shanghai',
+  timezone: string = 'Asia/Shanghai'
 ): boolean {
+  if (!predefinedDateTime) return true
   const dateTimeComponents = predefinedDateTime.split(' ')
   const dateComponents = dateTimeComponents[0].split('-').map(Number)
   const timeComponents = dateTimeComponents[1].split(':').map(Number)
@@ -23,7 +24,7 @@ export function hasPassedPredefinedDateTime(
       hour: timeComponents[0],
       minute: timeComponents[1],
     },
-    { zone: timezone },
+    { zone: timezone }
   )
 
   // Get the current time in the specified timezone
