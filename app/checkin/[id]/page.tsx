@@ -1,6 +1,8 @@
 'use client'
+import { getEvent } from '@/app/events'
 import * as Dialog from '@radix-ui/react-dialog'
-import { useCallback, useRef, useState } from 'react'
+import { redirect } from 'next/navigation'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useZxing } from 'react-zxing'
 
 type CheckInResponse = {
@@ -9,16 +11,22 @@ type CheckInResponse = {
   order?: number
 }
 
-export default function CheckInPage() {
+export default function CheckInPage({ params }: { params: { id: string } }) {
   const scannerReadyRef = useRef(true)
   const [dialogData, setDialogData] = useState<CheckInResponse | null>(null)
+
+  useEffect(() => {
+    if (!params || !params.id) return redirect('/')
+
+    if (!getEvent(params.id)?.allowCheckIn) return redirect('/')
+  }, [params])
 
   const doCheckIn = useCallback(async (code: string) => {
     setDialogData({ code })
     try {
       const res = await fetch('/api/checkin', {
         method: 'POST',
-        body: JSON.stringify({ code: code }),
+        body: JSON.stringify({ code: code, event: params.id }),
       })
       const { user, order } = await res.json()
 
@@ -40,7 +48,7 @@ export default function CheckInPage() {
         console.error(error)
       }
     },
-    [doCheckIn],
+    [doCheckIn]
   )
 
   const { ref } = useZxing({
