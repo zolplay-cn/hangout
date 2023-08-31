@@ -20,9 +20,9 @@ export const POST = async (req: NextRequest) => {
     .where(
       and(
         ne(guests.checkedIn, true),
-        eq(guests.code, code),
         eq(guests.invite, true),
-        eq(guests.event, event)
+        eq(guests.event, event),
+        eq(guests.code, code)
       )
     )
     .returning({ name: guests.name })
@@ -37,13 +37,7 @@ export const POST = async (req: NextRequest) => {
   const checkedInUsers = await db
     .select()
     .from(guests)
-    .where(
-      and(
-        eq(guests.event, event),
-        eq(guests.invite, true),
-        eq(guests.checkedIn, true)
-      )
-    )
+    .where(and(eq(guests.event, event), eq(guests.checkedIn, true)))
 
   return NextResponse.json({
     user: users[0].name,

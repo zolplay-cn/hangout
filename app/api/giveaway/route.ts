@@ -2,17 +2,18 @@ import { db } from '@/db'
 import { guests } from '@/db/schema'
 import { and, eq, notInArray } from 'drizzle-orm'
 import { NextRequest, NextResponse } from 'next/server'
-import { hasPassedPredefinedDateTime } from '@/app/api/guard'
+import { getEvent } from '@/app/events'
 
 export async function POST(req: NextRequest) {
-  if (!hasPassedPredefinedDateTime('2023-09-02 14:00')) {
+  const { pickedCodes, event } = await req.json()
+
+  if (!getEvent(event)?.allowGiveaway) {
     return NextResponse.json(
       { message: 'Giveaway is not live yet.' },
       { status: 403 }
     )
   }
 
-  const { pickedCodes, event } = await req.json()
   const winnableGuests = await db
     .select()
     .from(guests)
