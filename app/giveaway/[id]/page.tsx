@@ -43,10 +43,6 @@ export default function GiveawayPage({ params }: { params: { id: string } }) {
     count === 0 ? '???' : randomCodePool[Math.round(count)]
   )
 
-  // useEffect(() => {
-
-  // }, [params])
-
   const pickWinner = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setIsButtonDisabled(true)
