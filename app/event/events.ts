@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { hasPassedPredefinedDateTime } from '../lib/guard'
+import { hasPassedPredefinedDateTime } from '../../lib/guard'
 
 type Event = {
   id: string

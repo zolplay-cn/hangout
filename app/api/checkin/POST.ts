@@ -3,7 +3,7 @@ import { guests } from '@/db/schema'
 
 import { and, eq, ne } from 'drizzle-orm'
 import { NextRequest, NextResponse } from 'next/server'
-import { getEvent } from '@/app/events'
+import { getEvent } from '@/app/event/events'
 
 export const POST = async (req: NextRequest) => {
   const { code, event } = await req.json()

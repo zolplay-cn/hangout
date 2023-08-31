@@ -7,7 +7,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Venue1 from './venue_1.jpg'
 import Venue2 from './venue_2.jpg'
-import { getEvent } from '@/app/events'
+import { getEvent } from '@/app/event/events'
 import { SignUp } from '@/components/SignUp'
 
 const locationLink = 'https://surl.amap.com/fo5h75l189Rm'

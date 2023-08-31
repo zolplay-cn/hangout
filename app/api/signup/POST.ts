@@ -1,4 +1,4 @@
-import { getEvent } from '@/app/events'
+import { getEvent } from '@/app/event/events'
 import { db } from '@/db'
 import { guests } from '@/db/schema'
 import { NextRequest, NextResponse } from 'next/server'
