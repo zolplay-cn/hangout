@@ -14,7 +14,7 @@ const EVENTS: Event[] = [
   {
     id: '1',
     signUpStartAt: '2023-08-03 14:00',
-    signUpEndAt: '2023-09-03 14:00',
+    signUpEndAt: '2023-08-031 14:00',
     checkInStartAt: '2023-09-03 14:00',
     giveAwayStartAt: '2023-09-03 14:00',
     endAt: '2023-09-03 18:00',
