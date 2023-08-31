@@ -1,4 +1,5 @@
 'use client'
+import { EventGuard } from '@/app/_components/EventGuard'
 import { getEvent } from '@/app/events'
 import * as Dialog from '@radix-ui/react-dialog'
 import { redirect } from 'next/navigation'
@@ -14,12 +15,6 @@ type CheckInResponse = {
 export default function CheckInPage({ params }: { params: { id: string } }) {
   const scannerReadyRef = useRef(true)
   const [dialogData, setDialogData] = useState<CheckInResponse | null>(null)
-
-  useEffect(() => {
-    if (!params || !params.id) return redirect('/')
-
-    if (!getEvent(params.id)?.allowCheckIn) return redirect('/')
-  }, [params])
 
   const doCheckIn = useCallback(async (code: string) => {
     setDialogData({ code })
@@ -65,6 +60,7 @@ export default function CheckInPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="flex flex-col h-full grow">
+      <EventGuard eventId={params?.id} checkWith={'allowCheckIn'} />
       <Toaster />
       <video
         ref={ref}

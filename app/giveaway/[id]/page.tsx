@@ -6,6 +6,7 @@ import Confetti from 'react-confetti'
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion'
 import { getEvent } from '@/app/events'
 import { redirect } from 'next/navigation'
+import { EventGuard } from '@/app/_components/EventGuard'
 
 export const runtime = 'edge'
 
@@ -42,11 +43,9 @@ export default function GiveawayPage({ params }: { params: { id: string } }) {
     count === 0 ? '???' : randomCodePool[Math.round(count)]
   )
 
-  useEffect(() => {
-    if (!params || !params.id) return redirect('/')
+  // useEffect(() => {
 
-    if (!getEvent(params.id)?.allowGiveaway) return redirect('/')
-  }, [params])
+  // }, [params])
 
   const pickWinner = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -81,6 +80,7 @@ export default function GiveawayPage({ params }: { params: { id: string } }) {
 
   return (
     <>
+      <EventGuard eventId={params.id} checkWith="allowGiveaway" />
       {isMounted && showConfetti && (
         <Confetti
           width={width}
