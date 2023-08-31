@@ -1,7 +1,7 @@
 import { db } from '@/db'
 import { guests } from '@/db/schema'
 
-import { and, eq } from 'drizzle-orm'
+import { and, eq, ne } from 'drizzle-orm'
 import { NextRequest, NextResponse } from 'next/server'
 import { getEvent } from '@/app/events'
 
@@ -17,14 +17,19 @@ export const POST = async (req: NextRequest) => {
   const users = await db
     .update(guests)
     .set({ checkedIn: true })
-    .where(eq(guests.event, event))
-    .where(eq(guests.invite, true))
-    .where(eq(guests.code, code))
+    .where(
+      and(
+        ne(guests.checkedIn, true),
+        eq(guests.code, code),
+        eq(guests.invite, true),
+        eq(guests.event, event)
+      )
+    )
     .returning({ name: guests.name })
 
   if (!users.length) {
     return NextResponse.json(
-      { message: `Code [${code}] does not exist.` },
+      { message: `Code [${code}] does not exist or already checked-in.` },
       { status: 404 }
     )
   }
@@ -38,6 +43,6 @@ export const POST = async (req: NextRequest) => {
 
   return NextResponse.json({
     user: users[0].name,
-    order: checkedInUsers.length + 1,
+    order: checkedInUsers.length,
   })
 }

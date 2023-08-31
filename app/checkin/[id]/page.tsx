@@ -4,7 +4,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { redirect } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useZxing } from 'react-zxing'
-
+import { Toaster, toast } from 'sonner'
 type CheckInResponse = {
   code: string
   name?: string
@@ -28,6 +28,12 @@ export default function CheckInPage({ params }: { params: { id: string } }) {
         method: 'POST',
         body: JSON.stringify({ code: code, event: params.id }),
       })
+
+      if (res.status !== 200) {
+        const { message } = await res.json()
+        toast.error(message)
+        throw new Error(res.status.toString())
+      }
       const { user, order } = await res.json()
 
       setDialogData({ code, name: user, order })
@@ -59,6 +65,7 @@ export default function CheckInPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="flex flex-col h-full grow">
+      <Toaster />
       <video
         ref={ref}
         id="scanner"
