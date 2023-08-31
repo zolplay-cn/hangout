@@ -14,7 +14,7 @@ const locationLink = 'https://surl.amap.com/fo5h75l189Rm'
 
 export const runtime = 'edge'
 
-const event = getEvent('1')
+const event = getEvent('2')
 export default function Event() {
   useEffect(() => {
     gradient.initGradient('#gradient-canvas')

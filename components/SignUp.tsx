@@ -83,7 +83,7 @@ const SignUpForm: FC<{ eventId: string; onSuccess: () => void }> = ({
   const onSubmit = async (values: z.infer<typeof schema>) => {
     try {
       setLoading(true)
-      await fetch('/api/signup', {
+      const res = await fetch('/api/signup', {
         method: 'POST',
         body: JSON.stringify({
           ...values,
@@ -91,8 +91,12 @@ const SignUpForm: FC<{ eventId: string; onSuccess: () => void }> = ({
         }),
       })
 
-      toast.success('报名成功~')
-      onSuccess()
+      if (res.status === 200) {
+        toast.success('报名成功~')
+        onSuccess()
+      } else {
+        throw new Error()
+      }
     } catch (error) {
       toast.error('报名出错~')
     } finally {
