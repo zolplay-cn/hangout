@@ -8,6 +8,7 @@ import Image from 'next/image'
 import Venue1 from './venue_1.jpg'
 import Venue2 from './venue_2.jpg'
 import { getEvent } from '@/app/events'
+import { SignUp } from '@/components/SignUp'
 
 const locationLink = 'https://surl.amap.com/fo5h75l189Rm'
 
@@ -65,7 +66,7 @@ export default function Event() {
         </div>
 
         <div className="mb-32 flex items-center flex-col text-center lg:max-w-5xl lg:w-full lg:mb-20 lg:grid-cols-4 lg:text-left">
-          {event?.allowSignUp ? (
+          {/* {event?.allowSignUp ? (
             <Link
               href="https://docs.qq.com/form/page/DVEZZc29xVnprSGhy"
               className="px-10 lg:px-12 py-3 text-lg font-bold bg-[conic-gradient(from_var(--shimmer-angle),theme(colors.zinc.50)_0%,theme(colors.zinc.800)_10%,theme(colors.zinc.50)_20%)] animate-[shimmer_2.5s_linear_infinite] rounded-[24px] relative after:flex after:absolute after:bg-zinc-50 after:inset-[2px] after:rounded-[22px] after:content-[attr(aria-label)] after:text-zinc-800 after:items-center after:justify-center transform-gpu hover:scale-[1.02] transition-transform"
@@ -74,6 +75,11 @@ export default function Event() {
             >
               <span className="opacity-0">前往报名</span>
             </Link>
+          ) : (
+            <span className="select-none text-zinc-100/60">报名已结束</span>
+          )} */}
+          {event?.allowSignUp ? (
+            <SignUp eventId={event.id} />
           ) : (
             <span className="select-none text-zinc-100/60">报名已结束</span>
           )}
