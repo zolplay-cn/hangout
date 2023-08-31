@@ -1,12 +1,11 @@
 'use client'
 
-import React, { useEffect } from 'react'
-import useWindowSize from 'react-use/lib/useWindowSize'
-import Confetti from 'react-confetti'
-import { animate, motion, useMotionValue, useTransform } from 'framer-motion'
-import { getEvent } from '@/app/events'
-import { redirect } from 'next/navigation'
 import { EventGuard } from '@/app/_components/EventGuard'
+import { animate, motion, useMotionValue, useTransform } from 'framer-motion'
+import React from 'react'
+import Confetti from 'react-confetti'
+import useWindowSize from 'react-use/lib/useWindowSize'
+import { toast } from 'sonner'
 
 export const runtime = 'edge'
 
@@ -54,6 +53,12 @@ export default function GiveawayPage({ params }: { params: { id: string } }) {
       body: JSON.stringify({ pickedCodes }),
     })
     const { winner } = await response.json()
+
+    if (response.status !== 200 || !winner) {
+      toast.error('抽奖失败🤡')
+      setIsButtonDisabled(false)
+      return
+    }
 
     await animate(animationCount, ANIMATION_COUNT_MAX, {
       duration: ANIMATION_DURATION,

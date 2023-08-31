@@ -1,11 +1,9 @@
 'use client'
 import { EventGuard } from '@/app/_components/EventGuard'
-import { getEvent } from '@/app/events'
 import * as Dialog from '@radix-ui/react-dialog'
-import { redirect } from 'next/navigation'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { useZxing } from 'react-zxing'
-import { Toaster, toast } from 'sonner'
+import { toast } from 'sonner'
 type CheckInResponse = {
   code: string
   name?: string
@@ -61,7 +59,6 @@ export default function CheckInPage({ params }: { params: { id: string } }) {
   return (
     <div className="flex flex-col h-full grow">
       <EventGuard eventId={params?.id} checkWith={'allowCheckIn'} />
-      <Toaster />
       <video
         ref={ref}
         id="scanner"

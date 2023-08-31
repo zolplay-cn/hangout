@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Manrope } from 'next/font/google'
 import { MovingGradients } from '@/app/MovingGradients'
+import { Providers } from './Providers'
 
 const fontSans = Manrope({ subsets: ['latin'] })
 
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="zh-CN">
       <body className={`${fontSans.className} bg-[#6126b5] relative`}>
         <MovingGradients />
+        <Providers />
         <main className="flex min-h-screen relative z-20 flex-col items-center justify-between p-10 md:p-16 lg:p-24 text-zinc-100">
           {children}
         </main>
