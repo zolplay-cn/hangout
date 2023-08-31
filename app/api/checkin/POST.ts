@@ -17,7 +17,9 @@ export const POST = async (req: NextRequest) => {
   const users = await db
     .update(guests)
     .set({ checkedIn: true })
-    .where(and(eq(guests.code, code), eq(guests.event, event)))
+    .where(eq(guests.event, event))
+    .where(eq(guests.invite, true))
+    .where(eq(guests.code, code))
     .returning({ name: guests.name })
 
   if (!users.length) {
@@ -30,7 +32,9 @@ export const POST = async (req: NextRequest) => {
   const checkedInUsers = await db
     .select()
     .from(guests)
-    .where(and(eq(guests.checkedIn, true), eq(guests.event, event)))
+    .where(eq(guests.event, event))
+    .where(eq(guests.invite, true))
+    .where(eq(guests.checkedIn, true))
 
   return NextResponse.json({
     user: users[0].name,
