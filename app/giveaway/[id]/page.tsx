@@ -1,6 +1,6 @@
 'use client'
 
-import { EventGuard } from '@/app/_components/EventGuard'
+import { EventGuard } from '@/components/EventGuard'
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion'
 import React from 'react'
 import Confetti from 'react-confetti'

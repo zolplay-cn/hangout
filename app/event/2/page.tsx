@@ -2,7 +2,7 @@
 
 import { gradient } from '../../Gradient.js'
 import { useEffect } from 'react'
-import { LogoHelmet } from '@/app/_components/LogoHelmet'
+import { LogoHelmet } from '@/components/LogoHelmet'
 import Link from 'next/link'
 import Image from 'next/image'
 import Venue1 from '../1/venue_1.jpg'

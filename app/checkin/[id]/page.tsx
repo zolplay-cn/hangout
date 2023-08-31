@@ -1,5 +1,5 @@
 'use client'
-import { EventGuard } from '@/app/_components/EventGuard'
+import { EventGuard } from '@/components/EventGuard'
 import * as Dialog from '@radix-ui/react-dialog'
 import { useCallback, useRef, useState } from 'react'
 import { useZxing } from 'react-zxing'

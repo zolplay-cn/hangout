@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { getEvent } from '../events'
+import { getEvent } from '../app/events'
 import { redirect } from 'next/navigation'
 
 export const EventGuard: FC<{
