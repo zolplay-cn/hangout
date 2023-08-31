@@ -13,11 +13,16 @@ export const POST = async (req: NextRequest) => {
     )
   }
 
-  await db.insert(guests).values({
-    event,
-    name: nickname,
-    job,
-    wechat,
-    social,
-  })
+  const user = await db
+    .insert(guests)
+    .values({
+      event,
+      name: nickname,
+      job,
+      wechat,
+      social,
+    })
+    .returning({ id: guests.id })
+
+  return NextResponse.json(user)
 }
