@@ -17,16 +17,16 @@ export async function POST(req: NextRequest) {
   const winnableGuests = await db
     .select()
     .from(guests)
-    .where(eq(guests.event, event))
-    .where(eq(guests.invite, true))
     .where(
-      pickedCodes.length > 0
-        ? and(
-            notInArray(guests.code, pickedCodes),
-            eq(guests.inGiveawayPool, true),
-            eq(guests.checkedIn, true)
-          )
-        : and(eq(guests.inGiveawayPool, true), eq(guests.checkedIn, true))
+      and(
+        eq(guests.event, event),
+        eq(guests.invite, true),
+        eq(guests.inGiveawayPool, true),
+        eq(guests.checkedIn, true),
+        pickedCodes.length > 0
+          ? notInArray(guests.code, pickedCodes)
+          : undefined
+      )
     )
 
   const winner =

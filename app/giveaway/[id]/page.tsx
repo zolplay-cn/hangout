@@ -50,7 +50,7 @@ export default function GiveawayPage({ params }: { params: { id: string } }) {
 
     const response = await fetch('/api/giveaway', {
       method: 'POST',
-      body: JSON.stringify({ pickedCodes }),
+      body: JSON.stringify({ pickedCodes, event: params.id }),
     })
     const { winner } = await response.json()
 
