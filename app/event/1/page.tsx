@@ -1,7 +1,3 @@
-'use client'
-
-import { gradient } from '../../Gradient.js'
-import { useEffect } from 'react'
 import { LogoHelmet } from '@/components/LogoHelmet'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -9,6 +5,7 @@ import Venue1 from './venue_1.jpg'
 import Venue2 from './venue_2.jpg'
 import { getEvent } from '@/app/event/events'
 import { SignUp } from '@/components/SignUp'
+import { Gradient } from '@/components/Gradient'
 
 const locationLink = 'https://surl.amap.com/fo5h75l189Rm'
 
@@ -16,17 +13,9 @@ export const runtime = 'edge'
 
 const event = getEvent('1')
 export default function Event() {
-  useEffect(() => {
-    gradient.initGradient('#gradient-canvas')
-  }, [])
-
   return (
     <>
-      <canvas
-        id="gradient-canvas"
-        className="fixed inset-0 w-full h-full [--gradient-color-1:#a405da] [--gradient-color-2:#05338f] [--gradient-color-3:#b28ef5] [--gradient-color-4:#6126b5] pointer-events-none select-none z-10"
-        data-transition-in
-      />
+      <Gradient />
 
       <main className="flex min-h-screen relative z-20 flex-col items-center justify-between p-10 md:p-16 lg:p-24 text-zinc-100">
         <div className="z-10 max-w-5xl w-full items-center justify-end text-sm lg:flex">
@@ -222,8 +211,8 @@ export default function Event() {
                   <time dateTime="2023-09-03T17:00+08:00">5:00 PM</time>
                 </p>
                 <p className="mt-0.5 text-sm/6 text-zinc-200/80">
-                  我们精心准备了 Apple TV 4K、HomePod
-                  mini 与 Nothing Ear (2) 赶紧化身幸运儿，祝大家好运气！（抽奖活动仅限现场通过门票编号参与）
+                  我们精心准备了 Apple TV 4K、HomePod mini 与 Nothing Ear (2)
+                  赶紧化身幸运儿，祝大家好运气！（抽奖活动仅限现场通过门票编号参与）
                 </p>
               </li>
             </ul>

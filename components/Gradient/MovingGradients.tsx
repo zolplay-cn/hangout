@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { gradient } from '@/app/Gradient'
+import { gradient } from './Gradient'
 
 export function MovingGradients() {
   useEffect(() => {

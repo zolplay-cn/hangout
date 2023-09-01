@@ -14,27 +14,30 @@ export default function CheckInPage({ params }: { params: { id: string } }) {
   const scannerReadyRef = useRef(true)
   const [dialogData, setDialogData] = useState<CheckInResponse | null>(null)
 
-  const doCheckIn = useCallback(async (code: string) => {
-    setDialogData({ code })
-    try {
-      const res = await fetch('/api/checkin', {
-        method: 'POST',
-        body: JSON.stringify({ code: code, event: params.id }),
-      })
+  const doCheckIn = useCallback(
+    async (code: string) => {
+      setDialogData({ code })
+      try {
+        const res = await fetch('/api/checkin', {
+          method: 'POST',
+          body: JSON.stringify({ code: code, event: params.id }),
+        })
 
-      if (res.status !== 200) {
-        const { message } = await res.json()
-        toast.error(message)
-        throw new Error(res.status.toString())
+        if (res.status !== 200) {
+          const { message } = await res.json()
+          toast.error(message)
+          throw new Error(res.status.toString())
+        }
+        const { user, order } = await res.json()
+
+        setDialogData({ code, name: user, order })
+      } catch (error) {
+        console.error(error)
+        setDialogData(null)
       }
-      const { user, order } = await res.json()
-
-      setDialogData({ code, name: user, order })
-    } catch (error) {
-      console.error(error)
-      setDialogData(null)
-    }
-  }, [])
+    },
+    [params.id]
+  )
 
   const onScanned = useCallback(
     async (code: string) => {

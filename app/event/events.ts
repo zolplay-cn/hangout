@@ -53,7 +53,7 @@ export const getEvent = (id: string) => {
 }
 
 export const useEvent = (id: string) => {
-  return useMemo(() => getEvent(id), [])
+  return useMemo(() => getEvent(id), [id])
 }
 
 export const latestEvent = EVENTS[EVENTS.length - 1]

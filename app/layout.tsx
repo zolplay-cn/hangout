@@ -1,8 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Manrope } from 'next/font/google'
-import { MovingGradients } from '@/app/MovingGradients'
+
 import { Providers } from './Providers'
+import { MovingGradients } from '@/components/Gradient/MovingGradients'
 
 const fontSans = Manrope({ subsets: ['latin'] })
 
