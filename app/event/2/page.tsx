@@ -13,7 +13,7 @@ const locationLink = 'https://surl.amap.com/fo5h75l189Rm'
 export const runtime = 'edge'
 
 export const metadata: Metadata = {
-  title: '2023佐玩第二届开发者交流会',
+  title: '【加场】2023佐玩首届开发者交流会',
   description:
     '在深圳与优秀的开发者们面对面交流，我们有咖啡有点心，还有满满的技术八卦等你来听。赶紧加入我们的大家庭，认识一下社区里的各路英雄好汉！',
 }
@@ -48,7 +48,7 @@ export default function Event() {
 
           <h2 className="z-20 text-4xl lg:text-6xl tracking-tight mix-blend-overlay font-bold select-none flex flex-col py-5 space-y-1.5 items-center w-full [text-shadow:rgba(67,28,170,0.3)_6px_6px_12px]">
             <span className="text-2xl lg:text-4xl tracking-wide opacity-70">
-              2023佐玩第二届
+              2023佐玩首届<span className="text-red-300">加场</span>
             </span>
 
             <span>
