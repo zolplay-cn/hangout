@@ -80,8 +80,7 @@ export default function GiveawayPage({ params }: { params: { id: string } }) {
   }, [])
 
   return (
-    <>
-      <EventGuard eventId={params.id} checkWith="allowGiveaway" />
+    <EventGuard eventId={params.id} checkWith="allowGiveaway">
       {isMounted && showConfetti && (
         <Confetti
           width={width}
@@ -116,6 +115,6 @@ export default function GiveawayPage({ params }: { params: { id: string } }) {
           <span className="opacity-0">抽取幸运儿</span>
         </button>
       </form>
-    </>
+    </EventGuard>
   )
 }
