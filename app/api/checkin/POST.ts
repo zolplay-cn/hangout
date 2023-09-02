@@ -14,6 +14,10 @@ export const POST = async (req: NextRequest) => {
     )
   }
 
+  if (!code) {
+    return NextResponse.json({ message: 'Code is required.' }, { status: 404 })
+  }
+
   const users = await db
     .update(guests)
     .set({ checkedIn: true })
