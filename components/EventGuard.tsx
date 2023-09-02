@@ -10,7 +10,12 @@ export const EventGuard: FC<{
 }> = ({ children, eventId, checkWith }) => {
   if (!eventId) return redirect('/')
 
-  if (!getEvent(eventId)?.[checkWith]) return redirect('/')
+  if (!getEvent(eventId)?.[checkWith]) {
+    console.debug(
+      `event ${eventId} 的 ${checkWith} 校验未通过，请检查events配置 \n即将重定向到首页`
+    )
+    return redirect('/')
+  }
 
   return children
 }
