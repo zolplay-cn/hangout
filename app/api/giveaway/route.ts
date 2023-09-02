@@ -1,6 +1,6 @@
 import { db } from '@/db'
 import { guests } from '@/db/schema'
-import { and, eq, notInArray } from 'drizzle-orm'
+import { and, eq, isNotNull, notInArray } from 'drizzle-orm'
 import { NextRequest, NextResponse } from 'next/server'
 import { getEvent } from '@/app/event/events'
 
@@ -20,9 +20,9 @@ export async function POST(req: NextRequest) {
     .where(
       and(
         eq(guests.event, event),
-        eq(guests.invite, true),
         eq(guests.inGiveawayPool, true),
         eq(guests.checkedIn, true),
+        isNotNull(guests.code),
         pickedCodes.length > 0
           ? notInArray(guests.code, pickedCodes)
           : undefined

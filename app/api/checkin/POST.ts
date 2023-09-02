@@ -20,7 +20,6 @@ export const POST = async (req: NextRequest) => {
     .where(
       and(
         ne(guests.checkedIn, true),
-        eq(guests.invite, true),
         eq(guests.event, event),
         eq(guests.code, code)
       )
