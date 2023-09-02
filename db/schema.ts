@@ -8,7 +8,6 @@ export const guests = pgTable('guests', {
   wechat: varchar('wechat').notNull(),
   social: varchar('social').default(''),
   code: varchar('code'),
-  invite: boolean('invite').default(false),
   inGiveawayPool: boolean('in_giveaway_pool').notNull().default(true),
   checkedIn: boolean('checked_in').notNull().default(false),
 })
