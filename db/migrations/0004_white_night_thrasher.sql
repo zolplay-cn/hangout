@@ -1,0 +1,1 @@
+ALTER TABLE "guests" ADD COLUMN "winner" boolean DEFAULT false NOT NULL;

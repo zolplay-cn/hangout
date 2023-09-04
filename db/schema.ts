@@ -10,4 +10,5 @@ export const guests = pgTable('guests', {
   code: varchar('code'),
   inGiveawayPool: boolean('in_giveaway_pool').notNull().default(true),
   checkedIn: boolean('checked_in').notNull().default(false),
+  winner: boolean('winner').notNull().default(false),
 })

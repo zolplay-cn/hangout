@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
         eq(guests.event, event),
         eq(guests.inGiveawayPool, true),
         eq(guests.checkedIn, true),
+        eq(guests.winner, false),
         isNotNull(guests.code),
         pickedCodes.length > 0
           ? notInArray(guests.code, pickedCodes)
@@ -29,8 +30,20 @@ export async function POST(req: NextRequest) {
       )
     )
 
+  if (winnableGuests.length <= 0) {
+    return NextResponse.json(
+      { message: '对不起, 本轮抽奖完毕🤡' },
+      { status: 403 }
+    )
+  }
+
   const winner =
     winnableGuests[Math.floor(Math.random() * winnableGuests.length)]
+
+  await db
+    .update(guests)
+    .set({ winner: true })
+    .where(and(eq(guests.id, winner.id)))
 
   return NextResponse.json({
     winner,

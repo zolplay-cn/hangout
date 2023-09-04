@@ -52,10 +52,10 @@ export default function GiveawayPage({ params }: { params: { id: string } }) {
       method: 'POST',
       body: JSON.stringify({ pickedCodes, event: params.id }),
     })
-    const { winner } = await response.json()
+    const { winner, message } = await response.json()
 
     if (response.status !== 200 || !winner) {
-      toast.error('抽奖失败🤡')
+      toast.error(message)
       setIsButtonDisabled(false)
       return
     }
